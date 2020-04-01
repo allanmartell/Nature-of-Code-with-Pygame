@@ -107,3 +107,5 @@ while running:
 	clock.tick(framerate)
 	# Update screen: last line of loop. Fires animation
 	pygame.display.update()
+
+	print('checking')
