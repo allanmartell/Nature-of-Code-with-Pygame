@@ -5,7 +5,7 @@
 import pygame, random, sys, math
 from pygame.locals import *
 # import local scripts
-from vector import *
+from vector.classes import PVector
 
 # initialize pygame
 pygame.init()
