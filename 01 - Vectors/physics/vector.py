@@ -173,6 +173,16 @@ class PVector(Vector):
         else:
             return False
 
+    def limit(self, max):
+        """ Check the magnitude of self. If less than max, return the latter.
+            If magnitude is more than max, return a new PVector whose magnitude
+            is equal to max."""
+        m = self.mag()
+        if m <= max:
+            return self
+        elif m > max:
+            return self.normalize()*max # PVector obj
+
     def __add__(self, other):
         """ Returns the vector addition of self and other """
         added = tuple( a + b for a, b in zip(self, other) )
