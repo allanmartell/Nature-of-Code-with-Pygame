@@ -11,7 +11,7 @@ from physics.vector import PVector
 pygame.init()
 
 # Window title
-TITLE = "01. Vector Subtraction"
+TITLE = "1.3 Vector Subtraction - Line"
 pygame.display.set_caption(TITLE)
 
 # screen
@@ -35,13 +35,19 @@ size = 16
 
 
 # SETUP
+# =========================================================================
 # starting background
 background = (255, 255, 255)
 screen.fill(background)
 # custom objs
 
+# =========================================================================
+
 # Functions
 
+
+# Draw
+# =========================================================================
 def draw():
 	global background, location, velocity, size, mouseX, mouseY
 
@@ -65,6 +71,7 @@ def draw():
 	# one line in processing: translate(width/2,height/2);
 	# -----------------------------------------
 
+	# Draw a line to represent the vector:
 	# line: surface, color, point1 (x, y), point 2 (x, y)
 	pygame.draw.line(screen,(0,0,0),(0,0),(mouseX,mouseY))
 
@@ -86,7 +93,7 @@ def event_handler(): # requires importing locals
 				running = False # stop running
 				pygame.quit() # terminate pygame functionality
 				sys.exit() # terminate program
-
+# =========================================================================
 
 # MAIN LOOP
 
