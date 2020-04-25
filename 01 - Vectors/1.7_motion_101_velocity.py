@@ -17,7 +17,7 @@ pygame.display.set_caption(TITLE)
 
 # screen
 WIDTH = 640
-HEIGHT = 360
+HEIGHT = 180
 screen = pygame.display.set_mode((WIDTH,HEIGHT))
 
 # Key controls
@@ -27,7 +27,7 @@ pressed_key = []
 quitting_message = 'User is quitting the app'
 
 # Clock obj -> to keep track of FPS
-framerate = 24
+framerate = 60
 clock = pygame.time.Clock()
 
 
@@ -62,7 +62,7 @@ def event_handler(): # requires importing locals
 def draw():
 	global mouseX, mouseY
 
-	background = (0, 0, 0)
+	background = (255, 255, 255)
 	screen.fill(background)
 
 	mover.update()
