@@ -66,7 +66,7 @@ def draw():
 	background = (255, 255, 255)
 	screen.fill(background)
 
-	print(f"mouseX: {mouseX}, mouseY: {mouseY}")
+	#print(f"mouseX: {mouseX}, mouseY: {mouseY}")
 	mouse = PVector(mouseX, mouseY)
 	center = PVector(WIDTH//2, HEIGHT//2)
 	mouse -= center

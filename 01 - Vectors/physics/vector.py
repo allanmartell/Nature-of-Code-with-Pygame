@@ -144,26 +144,31 @@ class Vector(object):
 # The subclass PVector here takes the name from the eponymous class
 # from processing (https://processing.org/) which is written in Java
 
-# NOTE: all methods must return a PVector rather than a Vector object
+# NOTE: all methods that returns vectors must return a PVector
+#       than a Vector object
 
 class PVector(Vector):
 
     def __init__(self, *args):
-        """ Create a vector, example: v = Vector(1,2) """
+        """ Create a vector, example: v = Vector(1,2)
+            values must be a list so that attributes
+            can be updated after class has been called"""
         if len(args)==0: self.values = (0,0)
         else:
             self.values = args
             self.values = list(self.values)
 
-    def foo(self):
-        return 'foo'
-
-    # magnitude method
     def mag(self):
         """ A vector's magnitude it's the distance between the origin
             (0,0) and it's current location (x,y). The Pythagoras'
-            theorem calculates this"""
-        return math.sqrt(sum((val*val for val in self.values)))
+            theorem calculates this. Called norm in parent class"""
+        return math.sqrt(sum((val*val for val in self)))
+
+    def normalize(self):
+        """ Returns a normalized unit vector """
+        norm = self.mag()
+        normed = tuple( comp/norm for comp in self )
+        return PVector(*normed)
 
     def __add__(self, other):
         """ Returns the vector addition of self and other """
