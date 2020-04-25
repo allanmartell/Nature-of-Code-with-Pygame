@@ -90,6 +90,11 @@ def draw():
 	rect_dimensions = (0,0, int(m), 10)
 	pygame.draw.rect(screen, rect_color, rect_dimensions)
 
+	# NOTES:
+	# script won't run as in original processing sketch 1.5: https://natureofcode.com/book/chapter-1-vectors/
+	# in pygame, translating the canvas leads to a mouse position error. Once origin is moved to screen center
+	# mouseX and mouseY cannot read the position of the mouse before origin point
+	# processing has some solution to this by default. Don't know how to fix in pygame.
 # =========================================================================
 
 
