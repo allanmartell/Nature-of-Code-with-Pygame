@@ -69,8 +69,8 @@ def draw():
 	mouse = PVector(mouseX, mouseY)
 	center = PVector(WIDTH//2, HEIGHT//2)
 
-	mouse *= 0.5 # Multiplying a vector!
-				# the vector is now half its original size (multiplied by 0.5)
+	mouse /= 2 # Dividing a vector!
+				# the vector is now half its original size (divided by 2)
 
 	# ----------------------------------------
 	# translate: 3 steps

@@ -160,6 +160,12 @@ class PVector(Vector):
         for i, v in enumerate(self):
             total += ((origin.values[i]-self.values[i])**2)
         return math.sqrt(total)
+
+    def __truediv__(self, other):
+        """Same code as __div__ in Vector, but adapted for python 3"""
+        if type(other) == type(1) or type(other) == type(1.0):
+            divided = tuple( a / other for a in self )
+            return Vector(*divided)
 '''
     # work in progress
     def setMag(self, length, new=None):
