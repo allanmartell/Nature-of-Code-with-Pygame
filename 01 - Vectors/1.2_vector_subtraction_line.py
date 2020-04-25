@@ -5,7 +5,7 @@
 import pygame, random, sys, math
 from pygame.locals import *
 # import local scripts
-from vector.classes import PVector
+from physics.vector import PVector
 
 # initialize pygame
 pygame.init()
@@ -62,10 +62,10 @@ def draw():
 	temp_surf = screen.copy() # 1. copy screen
 	screen.fill(background)  # 2. fill the screen with whatever you want to take the place of what was there before
 	screen.blit(temp_surf,(WIDTH//2,HEIGHT//2)) # 3. blit translated surf to new location
-	# orginal line in processing: translate(width/2,height/2);
+	# one line in processing: translate(width/2,height/2);
 	# -----------------------------------------
 
-	# line
+	# line: surface, color, point1 (x, y), point 2 (x, y)
 	pygame.draw.line(screen,(0,0,0),(0,0),(mouseX,mouseY))
 
 

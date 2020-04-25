@@ -5,7 +5,7 @@
 import pygame, random, sys, math
 from pygame.locals import *
 # import local scripts
-from vector import *
+from physics.vector import *
 
 # initialize pygame
 pygame.init()
@@ -26,20 +26,25 @@ quitting_message = 'User is quitting the app'
 framerate = 60
 clock = pygame.time.Clock()
 
+
+# SETUP
+# =========================================================================
 # Global vars
 location = PVector(100, 100)
 velocity = PVector(2.5, 5)
 size = 16
 
-
-# SETUP
 # starting background
 background = (255, 255, 255)
 screen.fill(background)
 # custom objs
 
-# Functions 
+# =========================================================================
 
+# Functions
+
+# DRAW
+# =========================================================================
 def draw():
 	global background, location, velocity, size
 
@@ -52,16 +57,17 @@ def draw():
 	#obj.values[1] == obj.y in Shiffman's book
 
 	if location.values[0] > (WIDTH-size+2) or location.values[0] < 0:
-		velocity.values[0] *= -1 
+		velocity.values[0] *= -1
 	if location.values[1] > (HEIGHT-size+2) or location.values[1] < 0:
 		velocity.values[1] *= -1
 
 	erect = pygame.Rect(int(location.values[0]), int(location.values[1]), size, size)
 	fill = (175, 175, 175)
 	pygame.draw.ellipse(screen, fill, erect)
-	
 
-def event_handler(): # requires importing locals 
+# =========================================================================
+
+def event_handler(): # requires importing locals
 	pressed_key = []
 	# EVENTS - cannot be placed in a function to be called here
 	for event in pygame.event.get(): #all events in pygame
@@ -85,12 +91,12 @@ def event_handler(): # requires importing locals
 running = True
 
 while running:
-	
+
 	# MOUSE
 	mouseX, mouseY = pygame.mouse.get_pos()
 	event_handler()
 
-	
+
 	# DRAW
 	draw()
 
