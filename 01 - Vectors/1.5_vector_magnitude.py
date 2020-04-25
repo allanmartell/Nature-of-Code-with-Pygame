@@ -6,6 +6,7 @@ import pygame, random, sys
 from pygame.locals import *
 # import local scripts
 from physics.vector import PVector
+from controls import matstack as ms
 
 # initialize pygame
 pygame.init()
@@ -59,22 +60,38 @@ def event_handler(): # requires importing locals
 def draw():
 	global mouseX, mouseY
 
+	#ms.reset_mat()
+
 	# background
 	background = (255, 255, 255)
 	screen.fill(background)
 
+	print(f"mouseX: {mouseX}, mouseY: {mouseY}")
 	mouse = PVector(mouseX, mouseY)
 	center = PVector(WIDTH//2, HEIGHT//2)
 	mouse -= center
 
+	# line
+	line_color = (0,0,0)
+	pygame.draw.line(screen, line_color, (0, 0), (int(mouse.values[0]), int(mouse.values[1])))
+
+	# anything before this line will be translated
+	# ----------------------------------------
+	# translate: 3 steps
+	temp_surf = screen.copy() # 1. copy screen
+	screen.fill(background)  # 2. fill the screen with whatever you want to take the place of what was there before
+	screen.blit(temp_surf,(WIDTH//2,HEIGHT//2)) # 3. blit translated surf to new location
+	# one line in processing: translate(width/2,height/2);
+	# -----------------------------------------
+
 	# rect
 	m = mouse.mag()
 	rect_color = (0,0,0)
-	rect_dimensions = (0,0, m, 10)
-	# rect: surface, color, rect_dimensions
+	rect_dimensions = (0,0, int(m), 10)
 	pygame.draw.rect(screen, rect_color, rect_dimensions)
 
 # =========================================================================
+
 
 # MAIN LOOP
 

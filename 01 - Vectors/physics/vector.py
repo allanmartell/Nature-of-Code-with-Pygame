@@ -144,6 +144,8 @@ class Vector(object):
 # The subclass PVector here takes the name from the eponymous class
 # from processing (https://processing.org/) which is written in Java
 
+# NOTE: all methods must return a PVector rather than a Vector object
+
 class PVector(Vector):
 
     def __init__(self, *args):
@@ -153,6 +155,9 @@ class PVector(Vector):
             self.values = args
             self.values = list(self.values)
 
+    def foo(self):
+        return 'foo'
+
     # magnitude method
     def mag(self):
         """ A vector's magnitude it's the distance between the origin
@@ -160,45 +165,29 @@ class PVector(Vector):
             theorem calculates this"""
         return math.sqrt(sum((val*val for val in self.values)))
 
+    def __add__(self, other):
+        """ Returns the vector addition of self and other """
+        added = tuple( a + b for a, b in zip(self, other) )
+        return PVector(*added)
+
+    def __sub__(self, other):
+        """ Returns the vector difference of self and other """
+        subbed = tuple( a - b for a, b in zip(self, other) )
+        return PVector(*subbed)
+
+    def __mul__(self, other):
+        """ Returns the dot product of self and other if multiplied
+            by another Vector.  If multiplied by an int or float,
+            multiplies each component by other.
+        """
+        if type(other) == type(self):
+            return self.inner(other)
+        elif type(other) == type(1) or type(other) == type(1.0):
+            product = tuple( a * other for a in self )
+            return PVector(*product)
+
     def __truediv__(self, other):
         """Same code as __div__ in Vector, but adapted for python 3"""
         if type(other) == type(1) or type(other) == type(1.0):
             divided = tuple( a / other for a in self )
-            return Vector(*divided)
-'''
-    # work in progress
-    def setMag(self, length, new=None):
-        modified = None
-        if new == None: # assume self is PVector
-            new = PVector(0,0,0)
-            for i, v in enumerate(self.values):
-                new.values[i] += ((length - self.values[i])**2)
-            resizedV = tuple(math.sqrt(v) for v in new.values[i])
-            return PVector(resizedV)
-        else: # this might change
-            return None
-
-
-# magnitude function
-def mag(_vector, origin=PVector(0,0,0)):
-    total = 0
-    for i, v in enumerate(_vector):
-        total += ((origin.values[i]-_vector.values[i])**2)
-    return math.sqrt(total)
-
-
-#m = sqrt(x**2+ y**2)
-
-#m**2 = x**2 + y**2
-
-#x**2 + y**2 = m**2
-
-#x**2 = m**2 - y**2
-
-#x = sqrt(m**2 - y**2)
-#y = sqrt(m**2 - x**2)
-
-v = PVector(3,4)
-print(v.setMag(10))
-#print(v)
-'''
+            return PVector(*divided)
