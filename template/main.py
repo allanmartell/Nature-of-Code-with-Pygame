@@ -30,13 +30,16 @@ clock = pygame.time.Clock()
 
 
 # SETUP
+# =========================================================================
 # starting background
 background = (0, 0, 0)
 screen.fill(background)
 # custom objs
 
-# Functions 
-def event_handler(): # requires importing locals 
+# =========================================================================
+
+# Functions
+def event_handler(): # requires importing locals
 	# EVENTS - cannot be placed in a function to be called here
 	for event in pygame.event.get(): #all events in pygame
 		if event.type == QUIT: # clicking QUIT button (X)
@@ -52,19 +55,25 @@ def event_handler(): # requires importing locals
 				pygame.quit() # terminate pygame functionality
 				sys.exit() # terminate program
 
+# DRAW
+# =========================================================================
+def draw():
+	pass
+# =========================================================================
+
 # MAIN LOOP
 
 running = True
 
 while running:
-	
+
 	# MOUSE
 	mouseX, mouseY = pygame.mouse.get_pos()
 	event_handler()
 
-	
-	# DRAW
 
+	# DRAW
+	draw()
 
 
 	# Set FPS
