@@ -166,9 +166,12 @@ class PVector(Vector):
 
     def normalize(self):
         """ Returns a normalized unit vector """
-        norm = self.mag()
-        normed = tuple( comp/norm for comp in self )
-        return PVector(*normed)
+        m = self.mag()
+        if m != 0: # only works if magnitude is not 0
+            normed = tuple( comp/m for comp in self )
+            return PVector(*normed)
+        else:
+            return False
 
     def __add__(self, other):
         """ Returns the vector addition of self and other """
