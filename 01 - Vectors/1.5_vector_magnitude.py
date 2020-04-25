@@ -2,7 +2,7 @@
 # https://devdocs.io/pygame/
 
 # import external modules
-import pygame, random, sys, math
+import pygame, random, sys
 from pygame.locals import *
 # import local scripts
 from physics.vector import PVector
@@ -11,7 +11,7 @@ from physics.vector import PVector
 pygame.init()
 
 # Window title
-TITLE = "1.4 Multiplying a vector"
+TITLE = "1.5 Vector Magnitude"
 pygame.display.set_caption(TITLE)
 
 # screen
@@ -33,11 +33,11 @@ clock = pygame.time.Clock()
 # SETUP
 # =========================================================================
 # starting background
-
+background = (0, 0, 0)
+screen.fill(background)
 # custom objs
 
 # =========================================================================
-
 
 # Functions
 def event_handler(): # requires importing locals
@@ -56,42 +56,11 @@ def event_handler(): # requires importing locals
 				pygame.quit() # terminate pygame functionality
 				sys.exit() # terminate program
 
-
 # DRAW
 # =========================================================================
 def draw():
-
-	#mouseX, mouseY = pygame.mouse.get_pos()
-	global mouseX, mouseY
-
-	background = (255, 255, 255) # background should be white to see black line
-	screen.fill(background)
-
-	mouse = PVector(mouseX, mouseY)
-	center = PVector(WIDTH//2, HEIGHT//2)
-
-	mouse *= 0.5 # Multiplying a vector!
-				# the vector is now half its original size (multiplied by 0.5)
-
-	# ----------------------------------------
-	# translate: 3 steps
-	temp_surf = screen.copy() # 1. copy screen
-	screen.fill(background)  # 2. fill the screen with whatever you want to take the place of what was there before
-	screen.blit(temp_surf,(WIDTH//2,HEIGHT//2)) # 3. blit translated surf to new location
-	# one line in processing: translate(width/2,height/2);
-	# -----------------------------------------
-
-	# print('mouse.values[0], mouse.values[1]')
-	# print(mouse.values[0], mouse.values[1])
-	# print(int(mouse.values[0]), int(mouse.values[1]))
-
-	# Draw a line to represent the vector:
-	# line: surface, color, point1 (x, y), point 2 (x, y)
-	line_color = (0,0,0)
-	pygame.draw.line(screen, line_color, (0, 0), (int(mouse.values[0]), int(mouse.values[1])))
-
+	pass
 # =========================================================================
-
 
 # MAIN LOOP
 
