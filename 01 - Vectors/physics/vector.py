@@ -154,12 +154,11 @@ class PVector(Vector):
             self.values = list(self.values)
 
     # magnitude method
-    def mag(self, origin=(0,0,0)):
-        origin = PVector(*origin)
-        total = 0
-        for i, v in enumerate(self):
-            total += ((origin.values[i]-self.values[i])**2)
-        return math.sqrt(total)
+    def mag(self):
+        """ A vector's magnitude it's the distance between the origin
+            (0,0) and it's current location (x,y). The Pythagoras'
+            theorem calculates this"""
+        return math.sqrt(sum((val*val for val in self.values)))
 
     def __truediv__(self, other):
         """Same code as __div__ in Vector, but adapted for python 3"""

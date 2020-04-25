@@ -32,9 +32,7 @@ clock = pygame.time.Clock()
 
 # SETUP
 # =========================================================================
-# starting background
-background = (0, 0, 0)
-screen.fill(background)
+
 # custom objs
 
 # =========================================================================
@@ -59,7 +57,23 @@ def event_handler(): # requires importing locals
 # DRAW
 # =========================================================================
 def draw():
-	pass
+	global mouseX, mouseY
+
+	# background
+	background = (255, 255, 255)
+	screen.fill(background)
+
+	mouse = PVector(mouseX, mouseY)
+	center = PVector(WIDTH//2, HEIGHT//2)
+	mouse -= center
+
+	# rect
+	m = mouse.mag()
+	rect_color = (0,0,0)
+	rect_dimensions = (0,0, m, 10)
+	# rect: surface, color, rect_dimensions
+	pygame.draw.rect(screen, rect_color, rect_dimensions)
+
 # =========================================================================
 
 # MAIN LOOP
