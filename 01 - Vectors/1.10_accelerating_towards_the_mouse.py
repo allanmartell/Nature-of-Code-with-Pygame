@@ -6,18 +6,18 @@ import pygame, random, sys
 from pygame.locals import *
 # import local scripts
 from physics.vector import PVector
-from physics.motion_and_acceleration import Mover
+from physics.motion_towards_mouse import Mover
 
 # initialize pygame
 pygame.init()
 
 # Window title
-TITLE = "1.8 Motion 101 - Velocity and Constant Acceleration"
+TITLE = "Accelerating towards the mouse"
 pygame.display.set_caption(TITLE)
 
 # screen
 WIDTH = 640
-HEIGHT = 180
+HEIGHT = 360
 screen = pygame.display.set_mode((WIDTH,HEIGHT))
 
 # Key controls
@@ -65,11 +65,15 @@ def draw():
 	background = (255, 255, 255)
 	screen.fill(background)
 
-	mover.update()
-	mover.checkEdges()
+	mover.update(mouseX, mouseY)
+	# to track mouse location in .update() you have two options:
+	# 1. pass it as a local variable (like here)
+	# 2. redefine mouseX, mouseY as local variables inside .update()
+	#    by calling there pygame.mouse.get_post()
+	# I prefer #1 because I only define my vars once
+	#mover.checkEdges() # in this script, you don't need to check edges
 	mover.display()
-	#print(f"mover speed: {mover.velocity}")
-
+	#print(f"mover s
 
 # =========================================================================
 

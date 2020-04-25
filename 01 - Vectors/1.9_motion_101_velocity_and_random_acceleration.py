@@ -6,13 +6,13 @@ import pygame, random, sys
 from pygame.locals import *
 # import local scripts
 from physics.vector import PVector
-from physics.motion_and_acceleration import Mover
+from physics.motion_and_random_acceleration import Mover
 
 # initialize pygame
 pygame.init()
 
 # Window title
-TITLE = "1.8 Motion 101 - Velocity and Constant Acceleration"
+TITLE = "1.9 Motion 101 - Velocity and Random Acceleration"
 pygame.display.set_caption(TITLE)
 
 # screen

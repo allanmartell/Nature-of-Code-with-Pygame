@@ -11,7 +11,7 @@ from physics.vector import PVector
 pygame.init()
 
 # Window title
-TITLE = "Program's title"
+TITLE = "1.6 - Normalizing a Vector"
 pygame.display.set_caption(TITLE)
 
 # screen

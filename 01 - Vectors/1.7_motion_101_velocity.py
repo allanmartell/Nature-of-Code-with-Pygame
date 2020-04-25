@@ -12,7 +12,7 @@ from physics.motion import Mover
 pygame.init()
 
 # Window title
-TITLE = "Program's title"
+TITLE = "1.7 Motino 101 - Velocity"
 pygame.display.set_caption(TITLE)
 
 # screen

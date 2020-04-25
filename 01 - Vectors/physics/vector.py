@@ -21,7 +21,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 """
-import math
+import math, random
 
 class Vector(object):
     def __init__(self, *args):
@@ -182,6 +182,20 @@ class PVector(Vector):
             return self
         elif m > max:
             return self.normalize()*max # PVector obj
+
+    @staticmethod
+    def random2D(): # can't use self in static methods
+        """ Return 2D unit vector pointing in a random direction.
+            Implemented from third (polar) approach
+            Source: http://nbeloglazov.com/2017/04/09/random-vector-generation.html"""
+        # 1. r = 1, unit vector
+        r = 1
+        # 2. ϕ = random number [0, 2*PI]
+        phi = random.uniform(0, 2*math.pi)
+        # 3. calculate: x = r*cos(ϕ), y = r*sin(ϕ)
+        x = r * math.cos(phi)
+        y = r * math.sin(phi)
+        return PVector(x, y)
 
     def __add__(self, other):
         """ Returns the vector addition of self and other """
