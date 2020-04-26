@@ -69,14 +69,16 @@ def draw():
 	background = (255, 255, 255)
 	screen.fill(background)
 
-	# Make up two forces
-	wind = PVector(0.01, 0)
-	gravity = PVector(0, 0.1)
+	# Make up forces
+	wind = PVector(0.001, 0)
 
 	# loop through all objects and apply both forces to each object
 	for i, mover in enumerate(movers):
+		m = mover.mass
+		gravity = PVector(0, 0.01*m) # scaling gravity by mass to be more accurate
 		mover.applyForce(wind)
 		mover.applyForce(gravity)
+
 		mover.update()
 		mover.display()
 		mover.checkEdges()

@@ -12,6 +12,8 @@ class Mover:
         # PREVIOUS STUFF
         self.surface = surface
         self.width, self.height = surface.get_size()
+        self.size = 16
+        self.diameter = self.size*self.mass
 
         self.location = PVector(y, x)
         self.velocity = PVector(0, 0)
@@ -23,7 +25,7 @@ class Mover:
         self.acceleration += f # add to acceleration
 
     # Motion 101 from ch. 1
-    def update(self, mouseX, mouseY):
+    def update(self):
         self.velocity += self.acceleration # Velocity changes by acceleration
         self.location += self.velocity # Location changes by velocity
         self.acceleration *= 0 # now add clearing the acceleration each time!
@@ -32,9 +34,9 @@ class Mover:
     def display(self): # display mover
         stroke = (0,0,0)
         fill = (175, 175, 175)
-        diam = 16
+        size = 16
         # scale the diameter (aka size) according to mass
-        dimensions = (self.location.values[0], self.location.values[1], self.mass*diam, self.mass*diam)
+        dimensions = (self.location.values[0], self.location.values[1], self.mass*size, self.mass*size)
         pygame.draw.ellipse(self.surface, fill, dimensions) # filled
         pygame.draw.ellipse(self.surface, stroke, dimensions, 2)  # stroke
 
@@ -51,6 +53,6 @@ class Mover:
         # Even though we said that we shouldn't touch velocity and Location# directly
         # there are exceptions. Here, we are doing so as a quick and easy way to reverse
         # the direction of our object when it reaches the edge.
-        if self.location.values[1] > self.height:
+        if self.location.values[1] > (self.height):
             self.velocity.values[1] *= -1
             self.location.values[1] = self.height
