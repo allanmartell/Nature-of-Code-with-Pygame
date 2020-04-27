@@ -171,7 +171,7 @@ class PVector(Vector):
             normed = tuple( comp/m for comp in self )
             return PVector(*normed)
         else:
-            return False
+            return self # return 0 vector
 
     def limit(self, max):
         """ Check the magnitude of self. If less than max, return the latter.
