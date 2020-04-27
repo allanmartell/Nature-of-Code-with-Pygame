@@ -12,7 +12,7 @@ from physics.forces import Mover
 pygame.init()
 
 # Window title
-TITLE = "Accelerating towards the mouse"
+TITLE = "2.3 Gravity scaled by mass"
 pygame.display.set_caption(TITLE)
 
 # screen

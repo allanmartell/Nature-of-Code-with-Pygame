@@ -12,7 +12,7 @@ from physics.forces_and_liquids import Mover, Liquid
 pygame.init()
 
 # Window title
-TITLE = "Accelerating towards the mouse"
+TITLE = "2.5 Fluid resistance"
 pygame.display.set_caption(TITLE)
 
 # screen
