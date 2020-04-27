@@ -6,7 +6,7 @@ import pygame, random, sys
 from pygame.locals import *
 # import local scripts
 from physics.vector import PVector
-from physics.forces import Mover
+from physics.forces_and_liquids import Mover, Liquid
 
 # initialize pygame
 pygame.init()
@@ -38,12 +38,17 @@ clock = pygame.time.Clock()
 # custom objs
 # initialized 100 random mover objects with:
 #  	with random mass, starting all at 0,0
-movers = [Mover(screen, random.randrange(1, 4), random.randrange(WIDTH), 0) for _ in range(5)] # 20 mover objects in a list
+movers = [Mover(screen, random.uniform(0.5, 3), 40+i*70, 0) for i in range(100)] # 20 mover objects in a list
 # NOTE: in pygame, the float range won't work when m < 0.3. In forces.py, line 39,
 #        the second ellipse has a strokeWeight of 2 (last argument)
 # 		for m to be < 0.3, the strokeWeight must be 1.
 #		pygame only takes ints for pixel data (e.g. strokeweight, primitive's size, or position)
+
+# Initialize liquid object. Note the coefficient is low (0.1), otherwise the object may
+# come to a halt fairly quickly (which may someday be the effect you want)
+liquid = Liquid(screen, 0, HEIGHT//2, WIDTH, HEIGHT//2, 0.1) # x, y, w, h, c
 # =========================================================================
+
 
 # Functions
 def event_handler(): # requires importing locals
@@ -70,23 +75,16 @@ def draw():
 	background = (255, 255, 255)
 	screen.fill(background)
 
-	# Make up forces
-	wind = PVector(0.001, 0)
-	gravity = PVector(0, 0.1) # we could scale by mass to be more accurate
+	liquid.display()
 
 	# loop through all objects and apply both forces to each object
 	for i, mover in enumerate(movers):
-		c = 0.01
 
-		# calculate friction: negative unit velocity vector times coefficient of friction
-		# we assume for this model that normal force (N) has always a magnitude of 1
-		# the negative direction of N (-1) is because gravity pushes against the object's force
-		friction = -1*mover.velocity.normalize()*c
+		if mover.isInside(liquid):
+			mover.drag(liquid)
 
-		#print("friction: ", type(friction))
-
-		mover.applyForce(friction) # apply friction force to PVector object
-		mover.applyForce(wind)
+		m = 0.1*mover.mass
+		gravity = PVector(0, m) # Note that we are scaling gravity according to mass
 		mover.applyForce(gravity)
 
 		mover.update()
